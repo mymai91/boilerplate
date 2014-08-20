@@ -1,0 +1,16 @@
+{
+  "name": "server-boilerplate",
+  "description": "boilerplate express service",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "4.x"
+  },
+  "devDependencies": {
+    "gulp": "~3.5.5",
+    "gulp-load-plugins": "~0.4.0",
+    "gulp-connect": "^1.0.7",
+    "gulp-express": "0.0.9",
+    "connect-livereload": "^0.4.0"
+  }
+}
