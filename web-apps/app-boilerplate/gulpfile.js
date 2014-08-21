@@ -62,7 +62,7 @@ gulp.task('watch',function(){
 });
 
 gulp.task('connect', plugins.connect.server({
-    root: ['build'],
+    root: ['app'],
     port: 9001,
     livereload: {port: 35730}
 }));

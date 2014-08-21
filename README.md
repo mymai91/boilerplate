@@ -41,7 +41,8 @@ This should load the following json object:
 
 ### Launch the angular server
 ```
-cd <dev-path>/boilerplate/web-apps/app-boilerplate
+cd <dev-path>/boilerplate/web-apps/app-ng-boilerplate
+grunt
 gulp
 ```
 
@@ -63,7 +64,7 @@ This should load a simple app in the browser.
 * Go to http://nodejs.org and click install to download the install package
 * Run the install package
 
-Install will provide instructions on what to add to $PATH (normally it is /usr/local/bin, so you shouldn't have to do anything) 
+Install will provide instructions on what to add to $PATH (normally it is /usr/local/bin, so you shouldn't have to do anything)
 
 ```
 Node was installed at
@@ -82,7 +83,7 @@ Make sure that /usr/local/bin is in your $PATH.
 sudo npm install -g yo
 ```
 
-##Install Gulp 
+##Install Gulp
 ```
 sudo npm install -g gulp
 ```
