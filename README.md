@@ -14,6 +14,9 @@ git clone https://github.com/sonjayatandon/boilerplate.git
 ```
 cd <dev-path>/boilerplate/services/server-boilerplate
 npm install
+npm install lodash
+npm install body-parser
+npm install cookie-parser
 
 cd <dev-path>/boilerplate/web-apps/app-boilerplate
 npm install
