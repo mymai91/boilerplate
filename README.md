@@ -55,6 +55,11 @@ This should load a simple app in the browser.
 
 # Setup Dev Env
 
+## Configure bash (optional)
+If you haven't configured bash, use this:  https://github.com/revans/bash-it
+
+It's pretty good.
+
 ##Install Mongo
 ```
     brew install mongo
