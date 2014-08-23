@@ -7,8 +7,13 @@ module.exports = {
    * development and the `compile_dir` folder is where our app resides once it's
    * completely built.
    */
-  build_dir: 'build',
+  deploy_dir: 'build',
   compile_dir: 'bin',
+
+  deploy: {
+	root: 'build',
+	includes: 'includes'
+  },
 
   /**
    * This is a collection of file patterns that refer to our app code (the
@@ -22,6 +27,9 @@ module.exports = {
   app_files: {
     js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
     jsunit: [ 'src/**/*.spec.js' ],
+
+	index_src: 'src/index.html',
+	index_dest: 'build/index.html',
 
     coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
     coffeeunit: [ 'src/**/*.spec.coffee' ],
