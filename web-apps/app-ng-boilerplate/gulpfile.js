@@ -1,23 +1,26 @@
 var gulp = require('gulp');
 var plugins = require("gulp-load-plugins")({lazy:false});
 var gutil = require('gulp-util');
-var clean = require('gulp-clean');
+var clean = require('gulp-rimraf');
 var inject = require('gulp-inject');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var stream = require('event-stream');
+var html2js = require('gulp-html2js');
+var order = require("gulp-order");
 
 /**
  * Load in our build configuration file.
  */
-var build_config = require( './build.config.js' );
+var build = require( './build.config.js' );
+var pkg = require( './package.json' );
 
 /**
  * Clean the build directory
  */
 gulp.task('clean', function() {
-	gutil.log('Cleaning build directory: ' + build_config.deploy_dir)
-    return gulp.src(build_config.deploy_dir, {read: false})
+	gutil.log('Cleaning build directory: ' + build.deploy.root);
+    return gulp.src(build.deploy.root, {read: false})
     	.pipe(clean());
 });
 
@@ -26,23 +29,44 @@ gulp.task('clean', function() {
  */
 
 gulp.task('index', ['clean'], function() {
-	gutil.log('Build and deploy index.html');
+	gutil.log('Build and deploy index.html:' + build.app.templates);
 
-	var js_vendor_stream	= gulp.src(build_config.vendor_files.js)
-			.pipe(concat('app.js'))
+	var jsVendor = gulp.src(build.vendor.js)
+			.pipe(concat('vendor.js'))
 			.pipe(uglify())
-			.pipe(gulp.dest(build_config.deploy_dir + '/includes'));
+			.pipe(gulp.dest(build.deploy.js));
 
-	var js_app_stream = gulp.src(build_config.app_files.js)
-		.pipe(concat('vendor.js'))
-		.pipe(uglify())
-		.pipe(gulp.dest(build_config.deploy_dir + '/includes'));
+	var jsApp = gulp.src(build.app.js)
+		.pipe(concat('app.js'))
+//		.pipe(uglify())  
+		.pipe(gulp.dest(build.deploy.js));
+		
+	var jsTemplate = gulp.src(build.app.templates)
+		.pipe(html2js({
+			  outputModuleName: 'templates-app',	
+	          base: 'src/app'
+	        }))
+		.pipe(concat('template.js'))
+		.pipe(gulp.dest(build.deploy.js));
+		
+	var appStyles = gulp.src(build.app.css)
+		.pipe(concat('appstyles.css'))
+		.pipe(gulp.dest(build.deploy.styles));
 
-	var all_streams = stream.merge(js_vendor_stream, js_app_stream);
+	var all = stream.merge(jsVendor, jsTemplate, jsApp, appStyles)
+		.pipe(order([
+			'*vendor*',
+			'*template*',
+			'*'
+			]));
 
-	gulp.src(build_config.app_files.index_src)
-		.pipe(inject(all_streams, {ignorePath:build_config.deploy_dirgulp}))
-		.pipe(gulp.dest(build_config.deploy_dir));
+	gulp.src(build.app.index)
+		.pipe(inject(all, {ignorePath:build.deploy.root}))
+		.pipe(gulp.dest(build.deploy.root));
+});
+
+gulp.task('templates', ['clean'], function() {
+	
 });
 
 /**
@@ -50,13 +74,11 @@ gulp.task('index', ['clean'], function() {
  */
 
 /**
- * Concat and minify all the app js
- */
-
-/**
  * Full Build
  */
-gulp.task('build', ['clean','index']);
+gulp.task('build', ['clean','index'], function() {
+	gutil.log('Version: ' + pkg.version + ' build complete!');
+});
 
 
 gulp.task('connect', plugins.connect.server(
