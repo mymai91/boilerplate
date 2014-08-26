@@ -27,7 +27,7 @@ module.exports = {
     jsunit: [ 'src/**/*.spec.js' ],
 
 	index: 'src/index.html',
-    templates: [ 'src/app/**/*.tpl.html' ],
+    templates: [ 'src/modules/**/*.tpl.html' ],
 
     css: ['src/**/*.css']
   },

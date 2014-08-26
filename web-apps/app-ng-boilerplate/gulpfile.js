@@ -38,17 +38,17 @@ gulp.task('index', ['clean'], function() {
 
 	var jsApp = gulp.src(build.app.js)
 		.pipe(concat('app.js'))
-//		.pipe(uglify())  
+//		.pipe(uglify())
 		.pipe(gulp.dest(build.deploy.js));
-		
+
 	var jsTemplate = gulp.src(build.app.templates)
 		.pipe(html2js({
-			  outputModuleName: 'templates-app',	
-	          base: 'src/app'
+			  outputModuleName: 'templates-app',
+	          base: 'src/modules'
 	        }))
 		.pipe(concat('template.js'))
 		.pipe(gulp.dest(build.deploy.js));
-		
+
 	var appStyles = gulp.src(build.app.css)
 		.pipe(concat('appstyles.css'))
 		.pipe(gulp.dest(build.deploy.styles));
