@@ -8,7 +8,7 @@ angular.module( 'ngBoilerplate', [
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider, RestangularProvider) {
   $urlRouterProvider.otherwise( '/home' );
-  RestangularProvider.setBaseUrl('http://localhost:3000/api');
+  RestangularProvider.setBaseUrl('@@apiServer');
 })
 
 .run( function run () {
@@ -23,4 +23,3 @@ angular.module( 'ngBoilerplate', [
 })
 
 ;
-
