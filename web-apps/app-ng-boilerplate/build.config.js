@@ -7,8 +7,11 @@ module.exports = {
    * development and the `compile_dir` folder is where our app resides once it's
    * completely built.
    */
-  build_dir: 'build',
-  compile_dir: 'bin',
+  deploy: {
+	root: 'build',
+	js: 'build/js',
+	styles: 'build/styles'
+  },
 
   /**
    * This is a collection of file patterns that refer to our app code (the
@@ -19,18 +22,14 @@ module.exports = {
    * main HTML file, `less` is our main stylesheet, and `unit` contains our
    * app's unit tests.
    */
-  app_files: {
+  app: {
     js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
     jsunit: [ 'src/**/*.spec.js' ],
 
-    coffee: [ 'src/**/*.coffee', '!src/**/*.spec.coffee' ],
-    coffeeunit: [ 'src/**/*.spec.coffee' ],
+	index: 'src/index.html',
+    templates: [ 'src/app/**/*.tpl.html' ],
 
-    atpl: [ 'src/app/**/*.tpl.html' ],
-    ctpl: [ 'src/common/**/*.tpl.html' ],
-
-    html: [ 'src/index.html' ],
-    less: 'src/less/main.less'
+    css: ['src/**/*.css']
   },
 
   /**
@@ -60,11 +59,10 @@ module.exports = {
    * with our app's assets. This structure is flattened, so it is not
    * recommended that you use wildcards.
    */
-  vendor_files: {
+  vendor: {
     js: [
       'vendor/angular/angular.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
-      'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js',
 	  'vendor/lodash/dist/lodash.js',
