@@ -25,7 +25,7 @@ gulp.task('clean', function() {
 });
 
 /**
- * Build and deploy index.html
+ * Build and deploy index.html, templates, css, and javascript
  */
 
 gulp.task('index', ['clean'], function() {
@@ -60,18 +60,11 @@ gulp.task('index', ['clean'], function() {
 			'*'
 			]));
 
-	gulp.src(build.app.index)
+	return gulp.src(build.app.index)
 		.pipe(inject(all, {ignorePath:build.deploy.root}))
 		.pipe(gulp.dest(build.deploy.root));
 });
 
-gulp.task('templates', ['clean'], function() {
-	
-});
-
-/**
- * Build the vendor.js and inject into index.html
- */
 
 /**
  * Full Build
