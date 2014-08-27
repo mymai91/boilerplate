@@ -25,7 +25,7 @@ bower install
 ## Configure the build environment
 
 ```
-cd <dev-path>/greenchef/web-apps/app-greenchef
+cd <dev-path>/boilerplate/web-apps/app-ng-boilerplate
 ```
 
 Create the file:  aws.config.json
@@ -60,7 +60,7 @@ This should load the following json object:
 
 ### Build the angular app
 ```
-cd <dev-path>/greenchef/web-apps/app-greenchef
+cd <dev-path>/boilerplate/web-apps/app-ng-boilerplate
 gulp build
 ```
 
