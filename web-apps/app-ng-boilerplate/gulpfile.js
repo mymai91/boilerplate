@@ -119,7 +119,6 @@ gulp.task('release-build', ['clean'], function() {
 
 gulp.task('publish', ['clean','release-build'], function(){
 
-	gutil.log("credentials: " + JSON.stringify(aws));
 
   // create a new publisher
   var publisher = awspublish.create(aws);
