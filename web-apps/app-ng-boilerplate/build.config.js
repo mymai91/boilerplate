@@ -15,7 +15,7 @@ module.exports = {
       "apiServer": "http://localhost:3000/api"
     },
     releaseSettings: {
-      "apiServer": "http://default-environment-b73czym2zq.elasticbeanstalk.com/api"
+      "apiServer": "[enter release apiServer url here]"
     }
   },
 
