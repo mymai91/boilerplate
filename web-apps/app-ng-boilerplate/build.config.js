@@ -12,10 +12,10 @@ module.exports = {
   	js: 'build/js',
   	styles: 'build/styles',
     devSettings: {
-          "apiServer": "http://localhost:3000/api"
+      "apiServer": "http://localhost:3000/api"
     },
     releaseSettings: {
-          "apiServer": "http://default-environment-b73czym2zq.elasticbeanstalk.com/api"
+      "apiServer": "http://default-environment-b73czym2zq.elasticbeanstalk.com/api"
     }
   },
 
@@ -33,7 +33,7 @@ module.exports = {
     js: [ 'src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js' ],
     jsunit: [ 'src/**/*.spec.js' ],
 
-	index: 'src/index.html',
+	  index: 'src/index.html',
     templates: [ 'src/modules/**/*.tpl.html' ],
 
     css: ['src/**/*.css']
@@ -72,7 +72,7 @@ module.exports = {
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js',
-	  'vendor/lodash/dist/lodash.js',
+      'vendor/lodash/dist/lodash.js',
       'vendor/restangular/dist/restangular.js'
     ],
     css: [

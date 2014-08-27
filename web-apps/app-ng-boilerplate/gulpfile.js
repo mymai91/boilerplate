@@ -22,9 +22,9 @@ var aws = require('./aws.config.json');
  * Clean the build directory
  */
 gulp.task('clean', function() {
-	gutil.log('Cleaning build directory: ' + build.deploy.root);
+  gutil.log('Cleaning build directory: ' + build.deploy.root);
     return gulp.src(build.deploy.root, {read: false})
-    	.pipe(clean());
+      .pipe(clean());
 });
 
 /**
@@ -33,43 +33,41 @@ gulp.task('clean', function() {
 
 gulp.task('dev-build', ['clean'], function() {
 
-	gutil.log('DEV BUILD: Build and deploy index.html, js, templates, and css');
+  gutil.log('DEV BUILD: Build and deploy index.html, js, templates, and css');
 
   // concat the all the vendor js to vendor.js
-	var jsVendor = gulp.src(build.vendor.js)
-			.pipe(concat('vendor.js'))
-			.pipe(gulp.dest(build.deploy.js));
+  var jsVendor = gulp.src(build.vendor.js)
+    .pipe(concat('vendor.js'))
+    .pipe(gulp.dest(build.deploy.js));
 
   // concat all the app js to app.js, inject in dev settings
-	var jsApp = gulp.src(build.app.js)
-	  .pipe(replace(
-			{
-				patterns: [{json: build.deploy.devSettings}]
-			}
-		))
+  var jsApp = gulp.src(build.app.js)
+    .pipe(replace({
+			 patterns: [{json: build.deploy.devSettings}]
+		}))
 		.pipe(gulp.dest(build.deploy.js));
 
   // convert all the templates to js and concat to template.js
-	var jsTemplate = gulp.src(build.app.templates)
-		.pipe(html2js({
-			  outputModuleName: 'templates-app',
-	          base: 'src/modules'
-	        }))
-		.pipe(concat('template.js'))
-		.pipe(gulp.dest(build.deploy.js));
+  var jsTemplate = gulp.src(build.app.templates)
+    .pipe(html2js({
+			 outputModuleName: 'templates-app',
+			 base: 'src/modules'
+    }))
+    .pipe(concat('template.js'))
+    .pipe(gulp.dest(build.deploy.js));
 
   // concat all the css to appstyles.css
 	var appStyles = gulp.src(build.app.css)
-		.pipe(concat('appstyles.css'))
+	  .pipe(concat('appstyles.css'))
 		.pipe(gulp.dest(build.deploy.styles));
 
   // merge all the streams together
 	var all = stream.merge(jsVendor, jsTemplate, jsApp, appStyles)
-		.pipe(order([
+	  .pipe(order([
 			'*vendor*',
 			'*template*',
 			'*'
-			]));
+		]));
 
   // inject the includes into index, write out to deploy directory
 	return gulp.src(build.app.index)
