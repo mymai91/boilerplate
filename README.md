@@ -41,6 +41,23 @@ Fill in 'key' with your AWS Access Key ID.
 Fill in 'secret' with your AWS Secret Access Key.
 Fill in 'bucket' with the name of the s3 bucket you are deploying to.
 
+Edit build.config.js
+```
+  deploy: {
+  	root: 'build',
+  	js: 'build/js',
+  	styles: 'build/styles',
+    devSettings: {
+      "apiServer": "http://localhost:3000/api"
+    },
+    releaseSettings: {
+      "apiServer": "[enter release apiServer url here]"
+    }
+  },
+
+```
+Update releaseSettings.apiServer with the release URL of the express server 
+
 ## Test the project
 
 ### Launch the express server
