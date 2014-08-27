@@ -11,17 +11,14 @@ module.exports = {
   	root: 'build',
   	js: 'build/js',
   	styles: 'build/styles',
-    devSettings:
-      {
-        patterns: [
-          {
-            json: {
-              "apiServer": "http://localhost:3000/api"
-            }
-          }
-        ]
-      }
+    devSettings: {
+          "apiServer": "http://localhost:3000/api"
     },
+    releaseSettings: {
+          "apiServer": "http://default-environment-b73czym2zq.elasticbeanstalk.com/api"
+    }
+  },
+
 
   /**
    * This is a collection of file patterns that refer to our app code (the
