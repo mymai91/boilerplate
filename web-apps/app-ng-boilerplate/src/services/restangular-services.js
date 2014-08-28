@@ -1,6 +1,5 @@
 'use strict';
 
-// for a real app, use https:// for all base URLs
 var boilerplateBase='@@apiServer';
 
 angular.module('ngBoilerplate')
@@ -25,7 +24,7 @@ angular.module('ngBoilerplate')
       api.addFullRequestInterceptor(function(element, operation, route, url, headers, params, httpConfig){
         headers = headers || {};
         if ($window.sessionStorage.boilerplateToken) {
-          headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
+          headers.Authorization = 'Bearer ' + $window.sessionStorage.boilerplateToken;
         };
         return {
           headers: headers

@@ -31,7 +31,7 @@ module.exports = function(app) {
 	});
 
   // create a secured endpoint
-  app.use('/api', expressJwt({secret:config.secret.jwt}));
+  app.use('/api', expressJwt({secret:config.auth.jwtSecret}));
 
 	// parse application/x-www-form-urlencoded
 	app.use(bodyParser.urlencoded({ extended: false }))

@@ -31,7 +31,7 @@ exports.validate = function(req, res) {
   };
 
   // We are sending the profile inside the token
-  var token = jwt.sign(profile, config.secret.jwt, { expiresInMinutes: 60*5 });
+  var token = jwt.sign(profile, config.auth.jwtSecret, {expiresInMinutes: config.auth.expiresInMinutes} );
 
   console.log('created token for ' + JSON.stringify(profile));
 

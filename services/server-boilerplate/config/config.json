@@ -1,5 +1,6 @@
 {
-  "secret": {
-    "jwt": "[thisisanawefulsecret]"
+  "auth": {
+    "jwtSecret": "[thisisanawefulsecret]",
+    "expiresInMinutes": 300      
   }
 }

@@ -11,7 +11,7 @@ module.exports = function(app) {
 
 
   // define the auth endpoint
-  app.post('/api/authenticate', auth.validate);
+  app.post('/public/api/authenticate', auth.validate);
 
   // define the public api end points
   app.get('/public/api/awesome/:id', awesome.show)
