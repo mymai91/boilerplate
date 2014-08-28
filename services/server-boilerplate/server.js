@@ -12,13 +12,6 @@ var express = require('express'),
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-// Application Config
-var config = require('./config/config');
-
-if(config.env !== process.env.NODE_ENV){
-  process.env.NODE_ENV = config.env;
-}
-
 // Bootstrap models
 var modelsPath = path.join(__dirname, './models');
 fs.readdirSync(modelsPath).forEach(function (file) {
@@ -29,15 +22,18 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 
 var app = express();
 
-// Express settings
-require('./config/express')(app);
+// initialize express
+require('./config/init')(app);
 
-// Routing
+// set up the routing
 require('./routes')(app);
 
+// set the listen port
+var port = process.env.PORT || 3000;
+
 // Start server  (how we getting port set again?)
-app.listen(config.port, function () {
-  console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
+app.listen(port, function () {
+  console.log('Express server listening on port %d in %s mode', port, app.get('env'));
 });
 
 // Expose app

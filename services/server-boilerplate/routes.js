@@ -1,14 +1,23 @@
 /* -*- mode: javascript; js-indent-level: 2; indent-tabs-mode: nil -*- */
 'use strict';
 
-var awesome = require('./controllers/awesomethings');
+var awesome = require('./controllers/awesomethings'),
+  auth = require('./controllers/authorize');
 
 /**
  * Application routes
  */
 module.exports = function(app) {
 
+
+  // define the auth endpoint
+  app.post('/authenticate', auth.validate);
+
+  // define the public api end points
   app.get('/api/awesome/:id', awesome.show)
+
+  // define the secured api end points
+  app.get('/secured/api/awesome/:id', awesome.showSecured)
 
   // Any other versions accessed should return 410 Gone.
   app.get('/api/v*/*', function (req, res) {
