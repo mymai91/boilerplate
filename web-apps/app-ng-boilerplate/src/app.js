@@ -8,7 +8,6 @@ angular.module( 'ngBoilerplate', [
 
 .config( function myAppConfig ($stateProvider, $urlRouterProvider, $httpProvider) {
   $urlRouterProvider.otherwise( '/home' );
-
 })
 
 .run( function run ($window, Restangular, SecuredBoilerplateAPI, SecuredBoilerplateAPIConfig) {
