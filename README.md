@@ -22,6 +22,42 @@ cd <dev-path>/boilerplate/web-apps/app-boilerplate
 npm install
 bower install
 ```
+## Configure the build environment
+
+```
+cd <dev-path>/boilerplate/web-apps/app-ng-boilerplate
+```
+
+Create the file:  aws.config.json
+```
+{
+  "key": "...",
+  "secret": "...",
+  "bucket": "..."
+}
+
+```
+Fill in 'key' with your AWS Access Key ID.
+Fill in 'secret' with your AWS Secret Access Key.
+Fill in 'bucket' with the name of the s3 bucket you are deploying to.
+
+Edit build.config.js
+```
+  deploy: {
+  	root: 'build',
+  	js: 'build/js',
+  	styles: 'build/styles',
+    devSettings: {
+      "apiServer": "http://localhost:3000/api"
+    },
+    releaseSettings: {
+      "apiServer": "[enter release apiServer url here]"
+    }
+  },
+
+```
+Update releaseSettings.apiServer with the release URL of the express server 
+
 ## Test the project
 
 ### Launch the express server
@@ -39,10 +75,16 @@ This should load the following json object:
   {thing: 5}
 ```
 
-### Launch the angular server
+### Build the angular app
 ```
 cd <dev-path>/boilerplate/web-apps/app-ng-boilerplate
-grunt
+gulp build
+```
+
+### Launch the angular app
+
+```
+cd <dev-path>/boilerplate/web-apps/app-ng-boilerplate
 gulp
 ```
 
@@ -52,6 +94,14 @@ You can test the app by going to the following url:
 http://localhost:9001
 ```
 This should load a simple app in the browser.
+
+## Release the angular app to AWS
+```
+cd <dev-path>/boilerplate/web-apps/app-ng-boilerplate
+gulp release
+```
+You can view the released app by going to the endpoint of your s3 bucket.  
+
 
 # Setup Dev Env
 
