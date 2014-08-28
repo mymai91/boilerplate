@@ -11,13 +11,13 @@ module.exports = function(app) {
 
 
   // define the auth endpoint
-  app.post('/authenticate', auth.validate);
+  app.post('/api/authenticate', auth.validate);
 
   // define the public api end points
-  app.get('/awesome/:id', awesome.show)
+  app.get('/public/api/awesome/:id', awesome.show)
 
   // define the secured api end points
-  app.get('/secured/api/awesome/:id', awesome.showSecured)
+  app.get('/api/awesome/:id', awesome.showSecured)
 
   // Any other versions accessed should return 410 Gone.
   app.get('/api/v*/*', function (req, res) {

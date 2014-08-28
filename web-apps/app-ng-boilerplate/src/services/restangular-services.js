@@ -7,14 +7,14 @@ angular.module('ngBoilerplate')
   .factory('PublicBoilerplateAPI', function PublicBoilerplateAPI(Restangular) {
 
      return Restangular.withConfig(function(RestangularConfigurer) {
-        RestangularConfigurer.setBaseUrl(boilerplateBase+'/');
+        RestangularConfigurer.setBaseUrl(boilerplateBase+'/public/api/');
      });
   })
 
   .factory('SecuredBoilerplateAPI', function SecuredBoilerplateAPI(Restangular) {
 
     return Restangular.withConfig(function(RestangularConfigurer) {
-       RestangularConfigurer.setBaseUrl(boilerplateBase+'/secured/api/');
+       RestangularConfigurer.setBaseUrl(boilerplateBase+'/api/');
     });
   })
 
@@ -43,8 +43,8 @@ angular.module('ngBoilerplate')
 
     },
 
-    authenticate: function($window, publicAPI, authInfo) {
-      publicAPI.all('authenticate').post(authInfo)
+    authenticate: function($window, api, authInfo) {
+      api.all('authenticate').post(authInfo)
         .then(function (data) {
           $window.sessionStorage.boilerplateToken = data.token;
         }, function () {
