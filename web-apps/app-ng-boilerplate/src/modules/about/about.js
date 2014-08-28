@@ -16,9 +16,9 @@ angular.module( 'ngBoilerplate.about', [
   });
 })
 
-.controller( 'AboutCtrl', function AboutCtrl( $scope, Restangular ) {
+.controller( 'AboutCtrl', function AboutCtrl( $scope, PublicBoilerplateAPI ) {
   // This is simple a demo for UI Boostrap.
-  Restangular.one("awesome",2).get().then(function(awesome) {
+  PublicBoilerplateAPI.one("awesome",2).get().then(function(awesome) {
 	$scope.awesome=awesome;
   });
 })

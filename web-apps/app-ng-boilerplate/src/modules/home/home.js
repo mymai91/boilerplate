@@ -37,11 +37,10 @@ angular.module( 'ngBoilerplate.home', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope, Restangular ) {
-	Restangular.one("awesome",1).get().then(function(awesome) {
+.controller( 'HomeCtrl', function HomeController( $scope, SecuredBoilerplateAPI ) {
+	SecuredBoilerplateAPI.one("awesome",1).get().then(function(awesome) {
 		$scope.awesome=awesome;
 	});
 })
 
 ;
-

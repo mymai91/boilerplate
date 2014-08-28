@@ -14,7 +14,7 @@ module.exports = function(app) {
   app.post('/authenticate', auth.validate);
 
   // define the public api end points
-  app.get('/api/awesome/:id', awesome.show)
+  app.get('/awesome/:id', awesome.show)
 
   // define the secured api end points
   app.get('/secured/api/awesome/:id', awesome.showSecured)
