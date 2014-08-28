@@ -33,7 +33,11 @@ angular.module('ngBoilerplate')
 
       api.setErrorInterceptor(function(response, deferred, responseHandler) {
         if(response.status === 401) {
-            // handle error
+            // probably should redirect to a logged-out state
+
+            // clear the token, it may have expired
+            delete $window.sessionStorage.boilerplateToken;
+            
             return false; // error handled
         }
 
@@ -50,8 +54,12 @@ angular.module('ngBoilerplate')
           // Erase the token if the user fails to log in
           delete $window.sessionStorage.boilerplateToken;
         });
+    },
 
+    isAuthenticated: function($window) {
+      return !(typeof $window.sessionStorage.boilerplateToken === 'undefined');
     }
+
   };
 })
 
