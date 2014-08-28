@@ -1,5 +1,3 @@
-'use strict';
-
 var boilerplateBase='@@apiServer';
 
 angular.module('ngBoilerplate')
@@ -25,7 +23,8 @@ angular.module('ngBoilerplate')
         headers = headers || {};
         if ($window.sessionStorage.boilerplateToken) {
           headers.Authorization = 'Bearer ' + $window.sessionStorage.boilerplateToken;
-        };
+        }
+
         return {
           headers: headers
         };
@@ -37,7 +36,7 @@ angular.module('ngBoilerplate')
 
             // clear the token, it may have expired
             delete $window.sessionStorage.boilerplateToken;
-            
+
             return false; // error handled
         }
 
@@ -57,7 +56,7 @@ angular.module('ngBoilerplate')
     },
 
     isAuthenticated: function($window) {
-      return !(typeof $window.sessionStorage.boilerplateToken === 'undefined');
+      return (typeof $window.sessionStorage.boilerplateToken !== 'undefined');
     }
 
   };
