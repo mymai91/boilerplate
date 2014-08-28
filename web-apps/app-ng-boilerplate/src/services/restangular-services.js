@@ -1,5 +1,6 @@
 'use strict';
 
+// for a real app, use https:// for all base URLs
 var boilerplateBase='http://localhost:3000';
 
 angular.module('ngBoilerplate')

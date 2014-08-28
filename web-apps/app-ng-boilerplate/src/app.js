@@ -11,15 +11,16 @@ angular.module( 'ngBoilerplate', [
 
 })
 
-.run( function run ($window, Restangular, SecuredBoilerplateAPI, SecuredBoilerplateAPIConfig) {
+.run( function run ($window, Restangular, PublicBoilerplateAPI,SecuredBoilerplateAPI, SecuredBoilerplateAPIConfig) {
   SecuredBoilerplateAPIConfig.setInterceptors($window, SecuredBoilerplateAPI);
+
+// this is the wrong place to authenticate, but
+// useful as a start to test
+  SecuredBoilerplateAPIConfig.authenticate($window, PublicBoilerplateAPI, {username: 'john.doe', password: 'foobar'});
 
 })
 
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location, $http, $window, PublicBoilerplateAPI, SecuredBoilerplateAPIConfig ) {
-// this is the wrong place to authenticate, but
-// useful as a start to test
-  SecuredBoilerplateAPIConfig.authenticate($window, PublicBoilerplateAPI, {username: 'john.doe', password: 'foobar'});
 
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
