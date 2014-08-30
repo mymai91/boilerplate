@@ -12,7 +12,8 @@ module.exports = {
   	js: 'build/js',
   	styles: 'build/styles',
     devSettings: {
-      "apiServer": "http://localhost:3000/api"
+      // for a real app, use https for all base URLs
+      "apiServer": "http://localhost:3000"
     },
     releaseSettings: {
       "apiServer": "[enter release apiServer url here]"

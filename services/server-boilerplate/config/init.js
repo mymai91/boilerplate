@@ -1,24 +1,14 @@
 'use strict';
 
-var express = require('express'),
-    path = require('path'),
-    config = require('./config'),
+var config = require('./config.json'),
     bodyParser = require('body-parser'),
-    cookieParser = require('cookie-parser');
+    cookieParser = require('cookie-parser'),
+    expressJwt = require('express-jwt');
 
 /**
  * Express configuration
  */
 module.exports = function(app) {
-
-	var env = process.env.NODE_ENV || 'development';
-	if ('development' == env) {
-	 	app.use(require('connect-livereload')());
-	}
-
-	if ('production' == env) {
-
-	}
 
 	// Add headers
 	app.use(function (req, res, next) {
@@ -30,7 +20,7 @@ module.exports = function(app) {
 	    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
 	    // Request headers you wish to allow
-	    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+	    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization');
 
 	    // Set to true if you need the website to include cookies in the requests sent
 	    // to the API (e.g. in case you use sessions)
@@ -39,6 +29,9 @@ module.exports = function(app) {
 	    // Pass to next layer of middleware
 	    next();
 	});
+
+  // create a secured endpoint
+  app.use('/api', expressJwt({secret:config.auth.jwtSecret}));
 
 	// parse application/x-www-form-urlencoded
 	app.use(bodyParser.urlencoded({ extended: false }))

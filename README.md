@@ -48,7 +48,7 @@ Edit build.config.js
   	js: 'build/js',
   	styles: 'build/styles',
     devSettings: {
-      "apiServer": "http://localhost:3000/api"
+      "apiServer": "http://localhost:3000"
     },
     releaseSettings: {
       "apiServer": "[enter release apiServer url here]"
@@ -56,7 +56,7 @@ Edit build.config.js
   },
 
 ```
-Update releaseSettings.apiServer with the release URL of the express server 
+Update releaseSettings.apiServer with the release URL of the express server
 
 ## Test the project
 

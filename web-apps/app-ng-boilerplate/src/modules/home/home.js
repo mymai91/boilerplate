@@ -37,11 +37,23 @@ angular.module( 'ngBoilerplate.home', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope, Restangular ) {
-	Restangular.one("awesome",1).get().then(function(awesome) {
-		$scope.awesome=awesome;
-	});
+.controller( 'HomeCtrl', function HomeController( $scope, $window, PublicBoilerplateAPI, SecuredBoilerplateAPI, SecuredBoilerplateAPIConfig ) {
+  // this is another example of something you really wouldn't do
+  //   ... first off, the data should be fetched in a resolve.
+  //     And you normally don't switch to a public api if the secured one is not ready
+  // We need to do this, because the auth may not be done yet
+  // This race condition is not likely something that will
+  // happen in a prod app because you won't being doing
+  // the auth in the insane place we are doing it now (on app bootup)
+  if (SecuredBoilerplateAPIConfig.isAuthenticated($window)) {
+    SecuredBoilerplateAPI.one("awesome",1).get().then(function(awesome) {
+      $scope.awesome=awesome;
+    });
+  } else {
+    PublicBoilerplateAPI.one("awesome",1).get().then(function(awesome) {
+      $scope.awesome=awesome;
+    });
+  }
 })
 
 ;
-

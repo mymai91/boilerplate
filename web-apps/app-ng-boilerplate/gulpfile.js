@@ -10,6 +10,8 @@ var html2js = require('gulp-html2js');
 var order = require("gulp-order");
 var replace = require("gulp-replace-task");
 var awspublish = require('gulp-awspublish');
+var lint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
 
 /**
  * Load in our build configuration file.
@@ -45,6 +47,9 @@ gulp.task('dev-build', ['clean'], function() {
     .pipe(replace({
 			 patterns: [{json: build.deploy.devSettings}]
 		}))
+    .pipe(lint())
+    .pipe(lint.reporter(stylish))
+    .pipe(lint.reporter('fail'))
 		.pipe(gulp.dest(build.deploy.js));
 
   // convert all the templates to js and concat to template.js

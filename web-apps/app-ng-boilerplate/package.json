@@ -45,6 +45,8 @@
     "karma-jasmine": "^0.1.5",
     "sort-stream": "^1.0.0",
     "gulp-replace-task": "0.0.6",
-    "gulp-awspublish": "0.0.22"
+    "gulp-awspublish": "0.0.22",
+    "gulp-jshint": "^1.8.4",
+    "jshint-stylish": "^0.4.0"
   }
 }
