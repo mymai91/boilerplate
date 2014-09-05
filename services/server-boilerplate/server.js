@@ -1,7 +1,10 @@
 /* -*- mode: javascript; indent-tabs-mode: nil; js-indent-level: 2 -*- */
+(function () {
+
 'use strict';
 
 var express = require('express'),
+    config = require('./config/config.json'),
     path = require('path'),
     fs = require('fs');
 
@@ -28,6 +31,9 @@ require('./config/init')(app);
 // set up the routing
 require('./routes')(app);
 
+// if using mongoose
+// mongoose.connect(config.mongo.uri);
+
 // set the listen port
 var port = process.env.PORT || 3000;
 
@@ -38,3 +44,6 @@ app.listen(port, function () {
 
 // Expose app
 exports = module.exports = app;
+
+
+}());

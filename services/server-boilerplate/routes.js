@@ -1,4 +1,7 @@
 /* -*- mode: javascript; js-indent-level: 2; indent-tabs-mode: nil -*- */
+(function () {
+
+
 'use strict';
 
 var awesome = require('./controllers/awesomethings'),
@@ -14,10 +17,10 @@ module.exports = function(app) {
   app.post('/public/api/authenticate', auth.validate);
 
   // define the public api end points
-  app.get('/public/api/awesome/:id', awesome.show)
+  app.get('/public/api/awesome/:id', awesome.show);
 
   // define the secured api end points
-  app.get('/api/awesome/:id', awesome.showSecured)
+  app.get('/api/awesome/:id', awesome.showSecured);
 
   // Any other versions accessed should return 410 Gone.
   app.get('/api/v*/*', function (req, res) {
@@ -29,3 +32,6 @@ module.exports = function(app) {
     res.send(404);
   });
 };
+
+
+}());

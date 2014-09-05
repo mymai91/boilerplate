@@ -1,0 +1,11 @@
+{
+  "deploy": {
+    "root": "build",
+    "dist": "dist",
+    "config": "build/config",
+    "staging": {
+      "config": "config/env/staging.json"
+    }
+  },
+  "src": ["./**/*.js", "./**/*.json", "!node_modules/**/*", "!build.config.json", "!gulpfile.js"]
+}
