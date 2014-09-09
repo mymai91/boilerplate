@@ -1,3 +1,6 @@
+(function () {
+
+
 'use strict';
 
 var config = require('../config/config.json');
@@ -37,3 +40,5 @@ exports.validate = function(req, res) {
 
   res.json({ token: token });
 };
+
+}());

@@ -1,3 +1,5 @@
+(function () {
+
 'use strict';
 
 var config = require('./config.json'),
@@ -14,7 +16,7 @@ module.exports = function(app) {
 	app.use(function (req, res, next) {
 
 	    // Website you wish to allow to connect
-	    res.setHeader('Access-Control-Allow-Origin', '*');
+	    res.setHeader('Access-Control-Allow-Origin', config.allowOrigin);
 
 	    // Request methods you wish to allow
 	    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -34,11 +36,14 @@ module.exports = function(app) {
   app.use('/api', expressJwt({secret:config.auth.jwtSecret}));
 
 	// parse application/x-www-form-urlencoded
-	app.use(bodyParser.urlencoded({ extended: false }))
+	app.use(bodyParser.urlencoded({ extended: false }));
 
 	// parse application/json
-	app.use(bodyParser.json())
+	app.use(bodyParser.json());
 
 	// parse application/vnd.api+json as json
-	app.use(bodyParser.json({ type: 'application/vnd.api+json' }))
+	app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 };
+
+
+}());

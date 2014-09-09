@@ -1,3 +1,5 @@
+(function () {
+
 'use strict';
 
 exports.show = function(req, res) {
@@ -11,3 +13,5 @@ exports.showSecured = function(req, res) {
 
 	res.send({thing: 'user: ' + req.user.email + ' secured: '+id});
 };
+
+}());
